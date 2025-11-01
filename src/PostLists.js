@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function PostLists() {
   const [data, setData] = useState([]);
@@ -9,9 +9,9 @@ export default function PostLists() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // QUAN TRỌNG: Đổi URL để gọi backend local của bạn
-        const response = await fetch("http://localhost:8080/api/posts");
-        
+        // QUAN TRỌNG: Đổi URL để gọi backend local
+        const response = await fetch("https://s65j72-8080.csb.app/api/posts");
+
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function Post() {
   const { slug } = useParams();
@@ -9,7 +9,9 @@ export default function Post() {
     const fetchData = async () => {
       try {
         // QUAN TRỌNG: Đổi URL để gọi backend local
-        const response = await fetch("http://localhost:8080/api/post/" + slug);
+        const response = await fetch(
+          "https://s65j72-8080.csb.app/api/post/" + slug
+        );
         const result = await response.json();
         setPost(result);
       } catch (error) {
@@ -25,7 +27,7 @@ export default function Post() {
   }
 
   // Sửa lỗi cú pháp, gán title/desc sau khi có post [cite: 935, 941]
-  const { title, description } = post; 
+  const { title, description } = post;
 
   return (
     <div style={{ padding: 20 }}>

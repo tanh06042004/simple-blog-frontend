@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login({ onLogin }) {
   const [creds, setCreds] = useState({});
@@ -9,18 +9,18 @@ function Login({ onLogin }) {
   const handleLogin = async () => {
     try {
       // QUAN TRỌNG: Đổi URL
-      const response = await fetch("http://localhost:8080/api/login", {
+      const response = await fetch("https://s65j72-8080.csb.app/api/login", {
         method: "post",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(creds),
       });
 
       if (response.ok) {
         onLogin && onLogin({ username: creds.username });
-        navigate('/stats');
+        navigate("/stats");
       } else {
         setError("Invalid username or password!");
       }
@@ -31,17 +31,24 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div style={{ padding: 10 }}> <br />
-      <span>Username:</span><br />
+    <div style={{ padding: 10 }}>
+      {" "}
+      <br />
+      <span>Username:</span>
+      <br />
       <input
         type="text"
         onChange={(e) => setCreds({ ...creds, username: e.target.value })}
-      /><br />
-      <span>Password:</span><br />
+      />
+      <br />
+      <span>Password:</span>
+      <br />
       <input
         type="password"
         onChange={(e) => setCreds({ ...creds, password: e.target.value })}
-      /><br /><br />
+      />
+      <br />
+      <br />
       <button onClick={handleLogin}>Login</button>
       <p>{error}</p>
     </div>
